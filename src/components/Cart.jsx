@@ -41,7 +41,7 @@ const Cart = () => {
             <h1 className="font-semibold text-2xl border-b pb-8">Order Summary</h1>
             <div className="flex justify-between mt-10 mb-5">
               <span className="font-semibold text-sm uppercase">Items {Cart.length}</span>
-              <span className="font-semibold text-sm">{Total}$</span>
+              <span className="font-semibold text-sm">{parseFloat(Total).toFixed(3)}$</span>
             </div>
             <div>
               <label className="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>
@@ -57,7 +57,7 @@ const Cart = () => {
             <div className="border-t mt-8">
               <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                 <span>Total cost</span>
-                <span>${Total+10}</span>
+                <span> ${parseFloat(Total+10).toFixed(3)}</span>
               </div>
               <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
             </div>

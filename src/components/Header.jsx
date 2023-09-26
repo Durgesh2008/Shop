@@ -1,33 +1,59 @@
-import React, { useContext, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { ShopConText } from '../Context/Cartcontext'
+import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ShopConText } from "../Context/Cartcontext";
+import { FaSearch } from "react-icons/fa";
+import {FcShop} from 'react-icons/fc'
 
 const Header = () => {
-    const {Cart,setCart}=useContext(ShopConText)
+  const { Cart, Value, setValue } = useContext(ShopConText);
+  const SearchItemFunction = (e) => {
+    setValue(e.target.value.trim());
+  };
 
- 
   return (
-   <>
+    <>
+      <header className="text-gray-600 bg-[#2874f0] w-full body-font sticky top-0 z-10  shadow-lg mx-auto">
+        <div className="container w-[80%] mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+          <Link
+            to={"/"}
+            className="flex w-[20%]  title-font font-medium items-center text-[white] mb-4 md:mb-0 "
+          >
+            <div className="w-3/4 flex items-center justify-center">
+            <FcShop className="h-1/4 w-1/4"/>
+            <span className="ml-3 font-semibold text-xl">Shop</span>
+            </div>
+          </Link>
+          <div className="w-[45%]">
+            <div className="relative flex items-center w-full h-12 rounded-[6px] focus-within:shadow-lg bg-white overflow-hidden">
+              <div className="grid place-items-center h-full w-12 text-gray-300">
+                <FaSearch />
+              </div>
 
-   <header className="text-gray-600 body-font sticky top-1 z-10 bg-[white]">
-  <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+              <input
+                onInput={SearchItemFunction}
+                className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+                type="text"
+                id="search"
+                placeholder="Search something.."
+                value={Value}
+              />
+            </div>
+          </div>
+          <nav className="md:ml-auto w-[30%] flex flex-wrap items-center text-base justify-center">
+            <Link to={"/"} className="mr-5 text-[white] font-medium">
+              Home
+            </Link>
+            <Link to={"/cart"} className="mr-5 text-[white] font-medium">
+              Cart ({Cart.length})
+            </Link>
+            <Link to={"/"} className="mr-5 text-[white] font-medium">
+           Login
+            </Link>
+          </nav>
+        </div>
+      </header>
+    </>
+  );
+};
 
-    <Link to={'/'} className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-      </svg>
-      <span className="ml-3 text-xl">Tailblocks</span>
-    </Link>
-    <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-      <Link to={'/'} className="mr-5 hover:text-gray-900">Home</Link>
-      <Link to={'/cart'} className="mr-5 hover:text-gray-900">Cart ({Cart.length})</Link>
-    
-    </nav>
-   
-  </div>
-</header>
-   </>
-  )
-}
-
-export default Header
+export default Header;

@@ -1,23 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { FaSearch } from 'react-icons/fa'
+
 
 import SingleCart from './SingleCart'
 import axios from 'axios';
 import Filter from './Filter';
-// import { ShopConText } from '../Context/Cartcontext';
+import { ShopConText } from '../Context/Cartcontext';
 
 // *********************************** Start Component*************************************
 
 const Home = () => {
   // ----------------------------------State Here--------------------------------------------------------------------
   const [Products, setProducts] = useState([]);
-  // const {Cart}=useContext(ShopConText)
-  const [Value, setValue] = useState('');
+  
   const [AllCategoryProduct, setAllCategoryProduct] = useState([]);
   const [CategoryDropdown, setCategoryDropdown] = useState(false);
   const [SelectCate, setSelectCate] = useState('')
   const [SelectRating,setSelectRating]=useState('')
-
+  
+  const {Value, setValue}=useContext(ShopConText)
 
   // ------------------------------- Functions Here--------------------------------------
 
@@ -45,9 +45,7 @@ const Home = () => {
 
 
 
-  const SearchItemFunction = (e) => {
-    setValue(e.target.value.trim())
-  }
+  
 
 
 
@@ -87,25 +85,12 @@ useEffect(()=>{
     <>
 {console.log("home Rendered")}
       <section className="text-gray-600 body-font overflow-y-auto">
-        <div className="container py-10 px-5 mx-auto">
-          <div className='max-w-md mx-auto'>
-            <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-              <div className="grid place-items-center h-full w-12 text-gray-300">
-                <FaSearch />
-              </div>
-
-              <input onInput={SearchItemFunction}
-                className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
-                type="text"
-                id="search"
-                placeholder="Search something.."
-                value={Value} />
-            </div>
-          </div>
+        <div className="container  w-full mx-auto">
+        
 
           
           <Filter HandleCategorydropDown={HandleCategorydropDown} CategoryDropdown={CategoryDropdown} AllCategoryProduct={AllCategoryProduct} setSelectCate={setSelectCate} setSelectRating={setSelectRating}/>
-          <div className="flex w-[85%] flex-wrap items-center justify-center mx-auto gap-5">
+          <div className="flex w-[80%] flex-wrap items-center justify-center mx-auto gap-4 ">
             {
             
               SelectCate === '' ?
