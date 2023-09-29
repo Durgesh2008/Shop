@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-
 import SingleCart from './SingleCart'
 import axios from 'axios';
 import Filter from './Filter';
@@ -110,6 +109,7 @@ useEffect(()=>{
 
           </div>
         </div>
+  
       </section>
     </>
   )

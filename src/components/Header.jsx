@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ShopConText } from "../Context/Cartcontext";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch,FaRegUserCircle } from "react-icons/fa";
 import {FcShop} from 'react-icons/fc'
 
 const Header = () => {
-  const { Cart, Value, setValue } = useContext(ShopConText);
+  const { Cart, Value, setValue,IsuserLogin } = useContext(ShopConText);
   const SearchItemFunction = (e) => {
     setValue(e.target.value.trim());
   };
@@ -46,9 +46,17 @@ const Header = () => {
             <Link to={"/cart"} className="mr-5 text-[white] font-medium">
               Cart ({Cart.length})
             </Link>
-            <Link to={"/"} className="mr-5 text-[white] font-medium">
-           Login
-            </Link>
+            {
+              !IsuserLogin?(<Link to={"/login"} className="mr-5 text-[white] font-medium">
+              Login
+               </Link>):(<figure className="flex justify-center items-center gap-1">
+              <FaRegUserCircle className="text-white h-10 w-6"/>
+              <figcaption className="text-white" >User</figcaption>
+            </figure>)
+            }
+            
+            
+
           </nav>
         </div>
       </header>
